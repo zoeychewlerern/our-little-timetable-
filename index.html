@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fff7f4">
+<title>Our Little Timetable ♡</title>
+<style>
+:root{--cream:#fffaf5;--pink:#f7dce5;--pink2:#fbeaf0;--blue:#dcecff;--blue2:#edf5ff;--ink:#514750;--muted:#8c7d88;--line:#f0e4e4;--white:#fff;--lav:#eee7ff;--green:#e0f3e7}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#fff8f3,#fff4f8 55%,#f2f7ff);color:var(--ink);font:15px/1.45 ui-rounded,"Nunito",system-ui,-apple-system,sans-serif}
+button,input,select{font:inherit;color:inherit}button{cursor:pointer;border:0;border-radius:14px;padding:10px 14px;background:var(--pink2);font-weight:700}button.primary{background:#e7efff}button.ghost{background:#fff;border:1px solid var(--line)}button.danger{background:#fff0f0;color:#9b5555}.wrap{max-width:1120px;margin:auto;padding:22px 16px 50px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:12px}.logo{height:48px;width:48px;display:grid;place-items:center;background:linear-gradient(135deg,var(--pink),var(--blue));border-radius:17px;font-size:25px}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:800}.brand h1{font-size:clamp(23px,4vw,34px);line-height:1.1;margin:3px 0}.sub{color:var(--muted);font-size:13px}.pill{font-size:12px;border-radius:999px;padding:7px 11px;background:#fff;border:1px solid var(--line);white-space:nowrap}
+.panel{background:rgba(255,255,255,.82);border:1px solid #f0e5e5;border-radius:23px;padding:18px;box-shadow:0 8px 30px #8e6c6c0a;margin-bottom:16px}.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}.weeknav{display:flex;gap:8px;align-items:center}.weeknav strong{min-width:155px;text-align:center}.filters{display:flex;gap:8px;flex-wrap:wrap}.small{font-size:12px;color:var(--muted)}.notice{padding:12px 14px;border-radius:15px;background:#fff7e8;color:#80643e;font-size:13px;margin-top:13px}.status{font-size:12px;color:var(--muted);margin-top:10px}.status.ok{color:#347a56}.status.err{color:#a34848}
+.friend-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}.friend{border:1px solid var(--line);border-radius:19px;padding:14px;background:white}.friend-top{display:flex;align-items:center;gap:10px}.avatar{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;font-size:19px}.friend input{min-width:0;width:100%;border:1px solid transparent;background:transparent;font-weight:800;font-size:16px;outline:none}.friend input:focus{border-color:#e8d9e8;border-radius:8px}.friend p{font-size:12px;color:var(--muted);margin:5px 0 0}.friend .editname{margin-left:auto;font-size:11px;padding:6px 8px}
+.table-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--line);background:white}table{border-collapse:separate;border-spacing:0;width:100%;min-width:690px}th,td{border-bottom:1px solid #f3ebeb;border-right:1px solid #f3ebeb;padding:9px;vertical-align:top}th{background:#fff8fa;text-align:left;font-size:12px;color:#776975;position:sticky;top:0}th:first-child{width:80px}td:last-child,th:last-child{border-right:0}tr:last-child td{border-bottom:0}.day{font-weight:800}.date{font-size:11px;color:var(--muted);font-weight:500}.slot{min-height:78px;display:flex;flex-direction:column;gap:5px}.event{border-radius:12px;padding:8px;font-size:12px;line-height:1.35;overflow-wrap:anywhere}.event b{display:block;font-size:12px}.event span{display:block;opacity:.8;margin-top:3px}.event .room{font-size:11px}.empty{font-size:11px;color:#b4a8b1;padding:8px 2px}.pink{background:#fbe7ee}.blue{background:#e7f0ff}.lav{background:#f0eaff}.mint{background:#e4f5eb}.peach{background:#fff0df}.section-title{font-size:18px;margin:0 0 4px}.muted{color:var(--muted)}.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.free-list{display:grid;gap:8px;margin-top:12px}.free-item{display:flex;gap:9px;align-items:center;background:#f5f9ff;border-radius:13px;padding:10px 12px;font-size:13px}.dot{width:9px;height:9px;border-radius:50%;background:#9dbce9;flex:none}
+.modal{position:fixed;inset:0;background:#51475070;display:none;align-items:center;justify-content:center;padding:16px;z-index:10}.modal.open{display:flex}.dialog{background:var(--cream);border-radius:24px;padding:22px;width:min(500px,100%);max-height:90vh;overflow:auto;box-shadow:0 20px 70px #34203430}.dialog h2{margin:0 0 14px}.field{display:grid;gap:5px;margin:12px 0}.field label{font-size:12px;color:var(--muted);font-weight:800}.field input,.field select{width:100%;padding:11px 12px;border:1px solid #eadfe5;border-radius:12px;background:white;outline:none}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:18px}.hidden{display:none!important}.foot{text-align:center;color:var(--muted);font-size:12px;margin:24px 0 0}
+@media(max-width:680px){.wrap{padding:15px 10px 35px}header{align-items:flex-start}.pill{display:none}.panel{padding:13px;border-radius:19px}.friend-grid{gap:7px}.friend{padding:9px}.friend .editname{display:none}.avatar{width:30px;height:30px;font-size:16px}.friend input{font-size:13px}.friend p{font-size:10px}.bottom-grid{grid-template-columns:1fr}.toolbar{align-items:flex-start}.weeknav{width:100%;justify-content:space-between}.filters{width:100%}.filters button{flex:1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="brand"><div class="logo">♡</div><div><div class="eyebrow">Republic Polytechnic · Friends edition</div><h1>Our Little Timetable</h1><div class="sub">Three schedules, one little corner of the world ✿</div></div></div><div class="pill" id="roomBadge">Room: LOCAL</div></header>
+<section class="panel">
+<div class="toolbar"><div><h2 class="section-title">Our week at a glance</h2><div class="small">Compare classes and find a time to hang out.</div></div><div class="weeknav"><button class="ghost" id="prevWeek">←</button><strong id="weekLabel">This week</strong><button class="ghost" id="nextWeek">→</button></div></div>
+<div class="notice" id="syncNotice"><b>Setup needed:</b> This page saves on this device until Firebase is configured. For shared editing, follow the deployment guide that comes with this website.</div>
+<div class="status" id="status">Ready · Demo timetable shown below. Replace it with your real classes.</div>
+</section>
+<div class="friend-grid" id="friendCards"></div>
+<section class="panel">
+<div class="toolbar"><div><h2 class="section-title">Weekly comparison</h2><div class="small">Each column is one friend · Tap a class to edit it.</div></div><div class="filters"><button class="primary" id="addClass">＋ Add class</button><button class="ghost" id="shareBtn">↗ Share / sync setup</button></div></div>
+<div class="table-wrap" style="margin-top:14px"><table><thead><tr><th>Day</th><th id="head0">lerern</th><th id="head1">terrence</th><th id="head2">tiara</th></tr></thead><tbody id="timetable"></tbody></table></div>
+<div class="small" style="margin-top:10px">Tip: use “Add class” to enter the subject, time, day and classroom. Sample lessons are only placeholders.</div>
+</section>
+<div class="bottom-grid">
+<section class="panel"><h2 class="section-title">♡ When can we meet?</h2><div class="small">Free-time finder for the selected week.</div><div class="free-list" id="freeList"></div></section>
+<section class="panel"><h2 class="section-title">A little note for the group</h2><div class="small">Share plans, lunch ideas or meet-up reminders.</div><div class="field"><input id="groupNote" placeholder="e.g. Lunch at canteen after 12?"></div><button class="primary" id="saveNote">Save note</button><div class="status" id="noteStatus"></div><div class="small" style="margin-top:8px">Notes sync across phones only after the shared Firebase database is configured.</div></section>
+</div>
+<p class="foot">Made with ☁️, pastel colours & friendship · Not affiliated with Republic Polytechnic</p>
+</div>
+
+<div class="modal" id="classModal"><div class="dialog"><h2 id="classModalTitle">Add a class ♡</h2>
+<div class="field"><label>FRIEND</label><select id="cFriend"><option value="0">lerern</option><option value="1">terrence</option><option value="2">tiara</option></select></div>
+<div class="field"><label>SUBJECT / MODULE</label><input id="cSubject" placeholder="e.g. Media Writing"></div>
+<div class="row"><div class="field"><label>DAY</label><select id="cDay"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select></div><div class="field"><label>CLASSROOM</label><input id="cRoom" placeholder="e.g. W2.3"></div></div>
+<div class="row"><div class="field"><label>START TIME</label><input id="cStart" type="time" value="09:00"></div><div class="field"><label>END TIME</label><input id="cEnd" type="time" value="11:00"></div></div>
+<div class="field"><label>NOTE (OPTIONAL)</label><input id="cNote" placeholder="e.g. Bring laptop"></div>
+<div class="actions"><button class="danger hidden" id="deleteClass">Delete class</button><button class="ghost" id="cancelClass">Cancel</button><button class="primary" id="saveClass">Save class</button></div></div></div>
+
+<div class="modal" id="shareModal"><div class="dialog"><h2>Share your timetable ♡</h2>
+<p class="small">For genuine cross-phone syncing, set up Firebase Firestore and add your Firebase web configuration below. Read the included deployment guide before enabling access.</p><div class="notice"><b>Security:</b> A room code alone does not protect a public database. Do not use unrestricted Firestore rules. Configure authentication and access rules before entering real timetable information.</div>
+<div class="field"><label>SHARED ROOM CODE</label><input id="roomCode" placeholder="Use a long, private code"></div>
+<div class="field"><label>FIREBASE WEB CONFIG (JSON)</label><textarea id="firebaseConfig" rows="5" placeholder='{"apiKey":"...","authDomain":"...","projectId":"...","appId":"..."}' style="width:100%;padding:11px;border:1px solid #eadfe5;border-radius:12px;background:white;font:12px monospace"></textarea></div>
+<div class="small">Once configured, all three friends must open the same hosted website, enter the same room code and use the same Firebase project. See README for setup and security guidance.</div>
+<div class="actions"><button class="ghost" id="exportBtn">Export backup</button><button class="ghost" id="importBtn">Import backup</button><button class="ghost" id="closeShare">Close</button><button class="primary" id="connectBtn">Connect (test setup)</button><input type="file" id="importFile" accept="application/json" class="hidden"></div>
+<div class="status" id="connectStatus"></div><p class="small">Important: this prototype uses a shared document pattern and is not ready for sensitive data. Follow the guide to secure Firestore before sharing publicly.</p></div></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], COLORS=["pink","blue","lav","mint","peach"];
+const defaultState={names:["lerern","terrence","tiara"],classes:[
+{id:"demo1",friend:0,subject:"Design Thinking",day:"Monday",start:"09:00",end:"11:00",room:"W2.3",note:""},
+{id:"demo2",friend:1,subject:"Media Writing",day:"Monday",start:"10:00",end:"12:00",room:"W1.2",note:""},
+{id:"demo3",friend:2,subject:"Digital Media",day:"Tuesday",start:"13:00",end:"15:00",room:"E3.1",note:""},
+{id:"demo4",friend:0,subject:"Communication",day:"Wednesday",start:"11:00",end:"13:00",room:"W3.4",note:""},
+{id:"demo5",friend:1,subject:"Project Work",day:"Thursday",start:"09:00",end:"12:00",room:"W2.1",note:""},
+{id:"demo6",friend:2,subject:"Tutorial",day:"Friday",start:"14:00",end:"16:00",room:"E2.2",note:""}],note:""};
+let state=loadLocal(), weekOffset=0, editingId=null, db=null, roomRef=null, unsubscribe=null, remoteUpdate=false, saveTimer=null;
+function loadLocal(){try{return {...structuredClone(defaultState),...JSON.parse(localStorage.getItem("rpFriendsTimetable")||"{}")}}catch{return structuredClone(defaultState)}}
+function localSave(){localStorage.setItem("rpFriendsTimetable",JSON.stringify(state))}
+function setStatus(msg,type=""){let el=document.getElementById("status");el.textContent=msg;el.className="status "+type}
+function safe(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function mondayOf(date){let d=new Date(date);d.setHours(0,0,0,0);d.setDate(d.getDate()-((d.getDay()+6)%7));return d}
+function weekDates(){let d=mondayOf(new Date());d.setDate(d.getDate()+weekOffset*7);return DAYS.map((_,i)=>{let x=new Date(d);x.setDate(d.getDate()+i);return x})}
+function fmt(d){return d.toLocaleDateString("en-SG",{day:"numeric",month:"short"})}
+function time12(t){if(!t)return "";let [h,m]=t.split(":").map(Number);return `${h%12||12}:${String(m).padStart(2,"0")}${h>=12?"pm":"am"}`}
+function render(){
+ document.getElementById("weekLabel").textContent=weekOffset===0?"This week":weekOffset===1?"Next week":weekOffset===-1?"Last week":`${fmt(weekDates()[0])} – ${fmt(weekDates()[6])}`;
+ document.getElementById("friendCards").innerHTML=state.names.map((n,i)=>`<div class="friend"><div class="friend-top"><div class="avatar" style="background:${["#fbe7ee","#e7f0ff","#f0eaff"][i]}">${["🌷","🦋","🐻"][i]}</div><div style="min-width:0;flex:1"><input aria-label="Friend ${i+1} name" data-name="${i}" value="${safe(n)}" maxlength="30"><p>${state.classes.filter(c=>c.friend===i).length} classes this week</p></div></div></div>`).join("");
+ state.names.forEach((n,i)=>document.getElementById("head"+i).textContent=n);
+ document.getElementById("timetable").innerHTML=DAYS.map((day,i)=>`<tr><td><div class="day">${day.slice(0,3)}</div><div class="date">${fmt(weekDates()[i])}</div></td>${[0,1,2].map(friend=>{let cs=state.classes.filter(c=>c.friend===friend&&c.day===day).sort((a,b)=>a.start.localeCompare(b.start));return `<td><div class="slot">${cs.length?cs.map(c=>`<div class="event ${COLORS[friend]}" data-edit="${safe(c.id)}" role="button" tabindex="0"><b>${safe(c.subject)}</b><span>${time12(c.start)}–${time12(c.end)}</span>${c.room?`<span class="room">📍 ${safe(c.room)}</span>`:""}${c.note?`<span>${safe(c.note)}</span>`:""}</div>`).join(""):`<div class="empty">No class added ♡</div>`}</div></td>`}).join("")}</tr>`).join("");
+ document.getElementById("groupNote").value=state.note||"";
+ renderFree();
+ document.querySelectorAll("[data-name]").forEach(el=>el.addEventListener("change",e=>{state.names[+e.target.dataset.name]=e.target.value.trim()||`Friend ${+e.target.dataset.name+1}`;changed("Names updated ♡")}));
+ document.querySelectorAll("[data-edit]").forEach(el=>{el.addEventListener("click",()=>openClass(el.dataset.edit));el.addEventListener("keydown",e=>{if(e.key==="Enter")openClass(el.dataset.edit)})});
+}
+function renderFree(){
+ const list=document.getElementById("freeList"), out=[];
+ for(const day of DAYS){let busy=state.classes.filter(c=>c.day===day).map(c=>[c.start,c.end]).sort((a,b)=>a[0].localeCompare(b[0]));let cursor="09:00";for(const [s,e] of busy){if(s>cursor&&s>="09:00"&&cursor<="17:00")out.push({day,start:cursor,end:s});if(e>cursor)cursor=e}if(cursor<"17:00")out.push({day,start:cursor,end:"17:00"})}
+ const useful=out.filter(x=>mins(x.end)-mins(x.start)>=120).slice(0,5);
+ list.innerHTML=useful.length?useful.map(x=>`<div class="free-item"><span class="dot"></span><div><b>${x.day}</b><br><span class="muted">${time12(x.start)}–${time12(x.end)}</span></div></div>`).join(""):`<div class="free-item">Add your real classes to find possible meet-up times ♡</div>`;
+}
+function mins(t){let [h,m]=t.split(":").map(Number);return h*60+m}
+function changed(message){localSave();render();setStatus(message);if(roomRef&&!remoteUpdate){clearTimeout(saveTimer);saveTimer=setTimeout(()=>setDoc(roomRef,{state,updatedAt:new Date().toISOString()}).then(()=>setStatus("Saved and synced to your shared room ♡","ok")).catch(e=>setStatus("Local save worked, but cloud sync failed: "+e.message,"err")),350)}}
+function openClass(id=null){editingId=id;const c=id?state.classes.find(x=>x.id===id):null;document.getElementById("classModalTitle").textContent=c?"Edit class ♡":"Add a class ♡";document.getElementById("cFriend").value=c?.friend??0;document.getElementById("cSubject").value=c?.subject||"";document.getElementById("cDay").value=c?.day||"Monday";document.getElementById("cRoom").value=c?.room||"";document.getElementById("cStart").value=c?.start||"09:00";document.getElementById("cEnd").value=c?.end||"11:00";document.getElementById("cNote").value=c?.note||"";document.getElementById("deleteClass").classList.toggle("hidden",!c);document.getElementById("classModal").classList.add("open")}
+function closeModal(id){document.getElementById(id).classList.remove("open")}
+document.getElementById("addClass").onclick=()=>openClass();document.getElementById("cancelClass").onclick=()=>closeModal("classModal");
+document.getElementById("saveClass").onclick=()=>{let subject=document.getElementById("cSubject").value.trim(),start=document.getElementById("cStart").value,end=document.getElementById("cEnd").value;if(!subject)return alert("Please enter a subject or module name.");if(!start||!end||end<=start)return alert("Please choose a valid start and end time.");let c={id:editingId||("c"+Date.now()+Math.random().toString(36).slice(2,6)),friend:+document.getElementById("cFriend").value,subject,day:document.getElementById("cDay").value,room:document.getElementById("cRoom").value.trim(),start,end,note:document.getElementById("cNote").value.trim()};if(editingId)state.classes=state.classes.map(x=>x.id===editingId?c:x);else state.classes.push(c);closeModal("classModal");changed("Class saved ♡")};
+document.getElementById("deleteClass").onclick=()=>{if(confirm("Delete this class?")){state.classes=state.classes.filter(c=>c.id!==editingId);closeModal("classModal");changed("Class deleted")}};
+document.getElementById("prevWeek").onclick=()=>{weekOffset--;render()};document.getElementById("nextWeek").onclick=()=>{weekOffset++;render()};
+document.getElementById("saveNote").onclick=()=>{state.note=document.getElementById("groupNote").value;changed("Group note saved ♡");document.getElementById("noteStatus").textContent="Saved on this device (and shared room if connected)."};
+document.getElementById("shareBtn").onclick=()=>document.getElementById("shareModal").classList.add("open");document.getElementById("closeShare").onclick=()=>closeModal("shareModal");
+document.getElementById("exportBtn").onclick=()=>{let blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="our-little-timetable-backup.json";a.click();URL.revokeObjectURL(a.href)};
+document.getElementById("importBtn").onclick=()=>document.getElementById("importFile").click();document.getElementById("importFile").onchange=async e=>{try{let x=JSON.parse(await e.target.files[0].text());if(!Array.isArray(x.names)||!Array.isArray(x.classes))throw Error("This file is not a timetable backup.");state=x;changed("Backup imported ♡")}catch(err){alert("Could not import: "+err.message)}e.target.value=""};
+document.getElementById("connectBtn").onclick=async()=>{
+ const code=document.getElementById("roomCode").value.trim(), raw=document.getElementById("firebaseConfig").value.trim(), msg=document.getElementById("connectStatus");
+ if(!code||!raw){msg.textContent="Enter a shared room code and Firebase web config first.";msg.className="status err";return}
+ try{const cfg=JSON.parse(raw);if(unsubscribe)unsubscribe();const app=initializeApp(cfg,"room-"+code+"-"+Date.now());db=getFirestore(app);roomRef=doc(db,"sharedTimetables",code);msg.textContent="Connecting…";msg.className="status";
+ unsubscribe=onSnapshot(roomRef,snap=>{if(snap.exists()){remoteUpdate=true;state=snap.data().state||state;localSave();render();remoteUpdate=false;setStatus("Connected · Shared room is live ♡","ok");msg.textContent="Connected! Give your friends the same website URL and room code.";msg.className="status ok"}else{setDoc(roomRef,{state,updatedAt:new Date().toISOString()}).then(()=>{setStatus("Shared room created ♡","ok");msg.textContent="Room created! Share the hosted website URL and room code with your friends.";msg.className="status ok"}).catch(e=>{msg.textContent="Database write failed: "+e.message;msg.className="status err"})}},err=>{msg.textContent="Connection failed: "+err.message;msg.className="status err";setStatus("Cloud sync unavailable. Local changes are still saved.","err")});
+ localStorage.setItem("rpFirebaseConfig",raw);localStorage.setItem("rpRoomCode",code);document.getElementById("roomBadge").textContent="Room: "+code;document.getElementById("syncNotice").innerHTML="<b>Shared room mode:</b> edits sync through Firebase when connected. Use a long, hard-to-guess room code and share it only with your three friends. This room code is not a substitute for proper database security rules.";msg.textContent="Connecting to shared room…";
+ }catch(e){msg.textContent="Could not connect: "+e.message;msg.className="status err"}
+};
+try{let cfg=localStorage.getItem("rpFirebaseConfig"),code=localStorage.getItem("rpRoomCode");if(cfg)document.getElementById("firebaseConfig").value=cfg;if(code)document.getElementById("roomCode").value=code}catch{}
+render();
+</script>
+</body></html>
